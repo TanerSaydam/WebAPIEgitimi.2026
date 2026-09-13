@@ -4,4 +4,4 @@
 - [x] Asp.Net Nedir
 - [x] Web API (Controller API)
 - [x] HTTP Methods (GET, POST, PUT, DELETE)
-- [ ] HTTP Status Codes
+- [x] HTTP Status Codes

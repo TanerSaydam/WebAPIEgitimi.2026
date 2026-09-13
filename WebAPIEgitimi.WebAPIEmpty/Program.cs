@@ -8,14 +8,19 @@ builder.Services.AddControllers();
 builder.Services.AddCors();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 #endregion
 
 var app = builder.Build();
 
 #region middleware
-
-app.MapOpenApi();
-app.MapScalarApiReference();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
 
 app.UseCors(x =>
 {

@@ -12,7 +12,8 @@ public class ProductsController(IHttpContextAccessor httpContextAccessor) : Cont
     {
         var httpContext = httpContextAccessor.HttpContext;
         var res = Product.Products;
-        return Ok(res);
+        //return StatusCode(200,res);
+        return BadRequest("This is a mistake!");
     }
 
     [HttpPost]
@@ -26,11 +27,6 @@ public class ProductsController(IHttpContextAccessor httpContextAccessor) : Cont
         Product.Products.Add(product);
 
         return NoContent();
-    }
-
-    public IActionResult Test2()
-    {
-        return Ok();
     }
 }
 
