@@ -1,14 +1,15 @@
+using Carter;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region DI - Container / Service Collection / Service Registration
 builder.Services.AddControllers();
-//builder.Services.AddExtensionsTestMethod();
 builder.Services.AddCors();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCarter();
 #endregion
 
 var app = builder.Build();
@@ -33,18 +34,10 @@ app.UseCors(x =>
 });
 app.MapControllers();
 
+app.MapProducts();
+
+app.MapCarter();
+
 app.Run();
-#endregion
 
-#region notes and others
-//controller endpoint
-//minimal endpoint
-
-
-static class Extensions
-{
-    public static void AddExtensionsTestMethod(this IServiceCollection services)
-    {
-    }
-}
 #endregion

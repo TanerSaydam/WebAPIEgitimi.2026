@@ -2,5 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
+  <Project Path="WebAPIEgitimi.MinimalAPI/WebAPIEgitimi.MinimalAPI.csproj" Id="19a22d4c-ce9d-47c1-a902-3894db68801b" />
   <Project Path="WebAPIEgitimi.WebAPIEmpty/WebAPIEgitimi.WebAPIEmpty.csproj" />
 </Solution>
