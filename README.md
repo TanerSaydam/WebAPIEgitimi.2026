@@ -12,3 +12,7 @@
 - [x] IoC Container (Yüzeysel Middleware/DI)
 - [x] OpenApi/Scalar/Swagger
 - [x] Async / Await / CancellationToken
+
+### 2.Ders Ödevi (Zorunlu değil):
+- [ ] Basket Tablosu için Create ve Get Endpointleri yazın (Minimal API ile) (Get de liste gelecek)
+- [ ] GET işleminde Product Name ve Category Name de gelsin.
