@@ -1,4 +1,5 @@
 ﻿using Carter;
+using Microsoft.EntityFrameworkCore;
 using WebAPIEgitimi.MinimalAPI.Context;
 using WebAPIEgitimi.MinimalAPI.Dto;
 using WebAPIEgitimi.MinimalAPI.Models;
@@ -11,17 +12,17 @@ public sealed class ProductModule : ICarterModule
     {
         var app = group.MapGroup("products").WithTags("Products");
 
-        app.MapGet(string.Empty, (ApplicationDbContext dbContext) =>
+        app.MapGet(string.Empty, async (ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
         {
-            var res = dbContext.Products
+            var res = await dbContext.Products
             .LeftJoin(dbContext.Categories, m => m.CategoryId, m => m.Id, (product, category) => new { product, category })
             .Select(s => new ProductDto(s.product.Id, s.product.Name, s.product.CategoryId, s.category!.Name))
-            .ToList();
+            .ToListAsync(cancellationToken);
 
             return res;
         });
 
-        app.MapPost(string.Empty, (ProductCreateDto request, ApplicationDbContext dbContext) =>
+        app.MapPost(string.Empty, async (ProductCreateDto request, ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
         {
             Product product = new()
             {
@@ -30,7 +31,7 @@ public sealed class ProductModule : ICarterModule
             };
 
             dbContext.Products.Add(product);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return new { Message = "Kayıt işlemi başarıyla tamamlandı" };
         });
