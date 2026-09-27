@@ -20,6 +20,6 @@
 ### 3. Ders - 27.09.2026
 - [x] Exception Handler
 - [x] CORS Policy
-- [ ] Configuration (appsettings.json IOptions) / Options Pattern
-- [ ] Response Compression
+- [x] Configuration (appsettings.json IOptions) / Options Pattern
+- [x] Response Compression
 - [ ] Rate Limit

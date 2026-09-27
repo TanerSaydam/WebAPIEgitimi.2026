@@ -12,28 +12,11 @@
     <script>
 
         function getAPi(){
-            //const routeParams = "https://localhost:5000/api/products/telefon"
-            //const queryparams = "https://localhost:5000/api/products?name=telefon"
-            fetch("https://localhost:5000/api/products")
+            fetch("http://localhost:5120")
             .then((res) => {
                 console.log(res);
             });
         }
-        // function getAPi(){
-
-        //     const val = {
-        //         name: "Telefon"
-        //     };
-        //     fetch("https://localhost:5000/api/products",{
-        //         method:'POST',
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(val)
-        //     }).then((res) => {
-        //         console.log(res);
-        //     });
-        // }
     </script>
 </body>
 </html>
