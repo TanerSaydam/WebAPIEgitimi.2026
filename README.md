@@ -16,3 +16,10 @@
 ### 2.Ders Ödevi (Zorunlu değil):
 - [ ] Basket Tablosu için Create ve Get Endpointleri yazın (Minimal API ile) (Get de liste gelecek)
 - [ ] GET işleminde Product Name ve Category Name de gelsin.
+
+### 3. Ders - 27.09.2026
+- [x] Exception Handler
+- [x] CORS Policy
+- [ ] Configuration (appsettings.json IOptions) / Options Pattern
+- [ ] Response Compression
+- [ ] Rate Limit
