@@ -22,4 +22,4 @@
 - [x] CORS Policy
 - [x] Configuration (appsettings.json IOptions) / Options Pattern
 - [x] Response Compression
-- [ ] Rate Limit
+- [x] Rate Limit

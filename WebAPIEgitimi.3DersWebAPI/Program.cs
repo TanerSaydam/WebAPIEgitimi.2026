@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 using WebAPIEgitimi._3DersWebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,10 +38,42 @@ builder.Services.AddCors(x =>
 });
 
 builder.Services.Configure<Test>(builder.Configuration.GetSection("test"));
-#endregion
-
 
 builder.Services.AddResponseCompression(x => x.EnableForHttps = true);
+#endregion
+
+builder.Services.AddRateLimiter(x =>
+{
+    //Genelde uygulanan şekil
+    x.AddFixedWindowLimiter("FixedWindowLimiter", options =>
+    {
+        options.PermitLimit = 100;
+        options.Window = TimeSpan.FromSeconds(1);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 100;
+    });
+
+    //x.AddSlidingWindowLimiter();
+    //x.AddTokenBucketLimiter();
+    //x.AddConcurrencyLimiter();
+
+    x.AddFixedWindowLimiter("ForgetPasswordWindowLimiter", options =>
+    {
+        options.PermitLimit = 5;
+        options.Window = TimeSpan.FromMinutes(1);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        //options.QueueLimit = 2;
+    });
+
+
+    x.AddFixedWindowLimiter("FixedWindowLimiter2", options =>
+    {
+        options.PermitLimit = 5;
+        options.Window = TimeSpan.FromMinutes(1);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        //options.QueueLimit = 2;
+    });
+});
 
 var app = builder.Build();
 
@@ -88,16 +122,20 @@ app.UseExceptionHandler();
 
 app.UseResponseCompression();
 
+app.UseRateLimiter();
+
 app.MapGet("/", () =>
 {
-    List<string> list = new();
-    for (int i = 0; i < 1000000; i++)
-    {
-        list.Add($"Names {i}");
-    }
+    //List<string> list = new();
+    //for (int i = 0; i < 1000000; i++)
+    //{
+    //    list.Add($"Names {i}");
+    //}
 
-    return list;
-});
+    //return list;
+    Console.WriteLine("I am working...");
+    return new { Message = "Hello world!" };
+}).RequireRateLimiting("FixedWindowLimiter");
 
 #region Eski Endpoint
 //app.MapGet("/", (IOptionsMonitor<Test> options, IConfiguration configuration) =>

@@ -12,10 +12,13 @@
     <script>
 
         function getAPi(){
-            fetch("http://localhost:5120")
-            .then((res) => {
-                console.log(res);
-            });
+            for (let i = 0; i < 100; i++) {
+                 fetch("http://localhost:5120")
+                .then(res => res.json())
+                .then((res) => {
+                    console.log(res);
+                });
+            }
         }
     </script>
 </body>
