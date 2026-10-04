@@ -14,8 +14,14 @@ public sealed class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Patient>(entity =>
+        {
+            entity.HasQueryFilter(x => !x.IsDeleted);
+        });
+
         modelBuilder.Entity<Muayene>(entity =>
         {
+            entity.HasQueryFilter(x => !x.IsDeleted);
             entity.Property(i => i.PatientStatus)
                 .HasConversion(
                     v => v.Value,
@@ -27,5 +33,33 @@ public sealed class ApplicationDbContext : DbContext
             .HasForeignKey<Muayene>(p => p.PatientId)
             .OnDelete(DeleteBehavior.NoAction);
         });
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.Entity is Abstractions.Entity entity)
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entity.CreatedAt = DateTimeOffset.Now;
+                        break;
+                    case EntityState.Modified:
+                        if (entity.IsDeleted)
+                        {
+                            entity.DeletedAt = DateTimeOffset.UtcNow;
+                        }
+                        else
+                        {
+                            entity.UpdatedAt = DateTimeOffset.Now;
+                        }
+                        break;
+                }
+            }
+        }
+
+        return base.SaveChangesAsync(cancellationToken);
     }
 }
