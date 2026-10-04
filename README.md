@@ -24,4 +24,4 @@
 - [x] Rate Limit
 
 ### 4. Ders - 04.10.2026
-- [ ] Hasta Kayıt Sistemi (Örnek Proje)
+- [x] Hasta Kayıt Sistemi (Örnek Proje)
