@@ -3,6 +3,7 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="WebAPIEgitimi.3DersWebAPI/WebAPIEgitimi.3DersWebAPI.csproj" Id="d3cdec6c-e6c3-4606-bc2a-dd1ad0a8d867" />
+  <Project Path="WebAPIEgitimi.HastaKabulWebAPI/WebAPIEgitimi.HastaKabulWebAPI.csproj" Id="e0a05872-f581-4d1a-a137-10b8cf7b3c4e" />
   <Project Path="WebAPIEgitimi.MinimalAPI/WebAPIEgitimi.MinimalAPI.csproj" Id="19a22d4c-ce9d-47c1-a902-3894db68801b" />
   <Project Path="WebAPIEgitimi.WebAPIEmpty/WebAPIEgitimi.WebAPIEmpty.csproj" />
 </Solution>

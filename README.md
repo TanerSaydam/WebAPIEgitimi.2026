@@ -6,7 +6,6 @@
 - [x] HTTP Methods (GET, POST, PUT, DELETE)
 - [x] HTTP Status Codes
 
-
 ### 2. Ders - 20.09.2026
 - [x] Minimal API
 - [x] IoC Container (Yüzeysel Middleware/DI)
@@ -23,3 +22,6 @@
 - [x] Configuration (appsettings.json IOptions) / Options Pattern
 - [x] Response Compression
 - [x] Rate Limit
+
+### 4. Ders - 04.10.2026
+- [ ] Hasta Kayıt Sistemi (Örnek Proje)
